@@ -1,0 +1,709 @@
+node {
+  name: "i_vld"
+  input: "C11/A1"
+  attr {
+    key: "site"
+    value {
+      placeholder: "LEFT"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "PORT"
+    }
+  }
+  attr {
+    key: "x"
+    value {
+      f: 0.0
+    }
+  }
+  attr {
+    key: "y"
+    value {
+      f: 1.276
+    }
+  }
+}
+node {
+  name: "AND2V1_96S6T24UL/A1"
+  input: "i_vld"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "AND2V1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: -0.127
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: 0.025
+    }
+  }
+}
+node {
+  name: "i_rdy"
+  input: "U6/ZN"
+  input: "C11/A2"
+  attr {
+    key: "site"
+    value {
+      placeholder: "BOTTOM"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "PORT"
+    }
+  }
+  attr {
+    key: "x"
+    value {
+      f: 0.456
+    }
+  }
+  attr {
+    key: "y"
+    value {
+      f: 0.0
+    }
+  }
+}
+node {
+  name: "NAND2BV1_96S6T24UL/ZN"
+  input: "i_rdy"
+  input: "C11/A2"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "NAND2BV1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: 0.0
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: -0.192
+    }
+  }
+}
+node {
+  name: "AND2V1_96S6T24UL/A2"
+  input: "i_rdy"
+  input: "U6/ZN"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "AND2V1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: -0.007
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: 0.0
+    }
+  }
+}
+node {
+  name: "o_vld"
+  input: "U6/B1"
+  input: "U5/A1"
+  attr {
+    key: "site"
+    value {
+      placeholder: "BOTTOM"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "PORT"
+    }
+  }
+  attr {
+    key: "x"
+    value {
+      f: 0.78
+    }
+  }
+  attr {
+    key: "y"
+    value {
+      f: 0.0
+    }
+  }
+}
+node {
+  name: "NAND2BV1_96S6T24UL/B1"
+  input: "o_vld"
+  input: "U5/A1"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "NAND2BV1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: 0.0
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: -0.192
+    }
+  }
+}
+node {
+  name: "CLKNAND2V1_96S6T24UL/A1"
+  input: "o_vld"
+  input: "U6/B1"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "CLKNAND2V1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: 0.019
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: -0.009
+    }
+  }
+}
+node {
+  name: "o_rdy"
+  input: "U6/A1"
+  input: "U5/A2"
+  attr {
+    key: "site"
+    value {
+      placeholder: "BOTTOM"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "PORT"
+    }
+  }
+  attr {
+    key: "x"
+    value {
+      f: 0.716
+    }
+  }
+  attr {
+    key: "y"
+    value {
+      f: 0.0
+    }
+  }
+}
+node {
+  name: "NAND2BV1_96S6T24UL/A1"
+  input: "o_rdy"
+  input: "U5/A2"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "NAND2BV1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: 0.0
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: -0.192
+    }
+  }
+}
+node {
+  name: "CLKNAND2V1_96S6T24UL/A2"
+  input: "o_rdy"
+  input: "U6/A1"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "CLKNAND2V1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: -0.081
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: -0.0475
+    }
+  }
+}
+node {
+  name: "CLKINV1_96S6T24UL/ZN"
+  input: "C13/A2"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "CLKINV1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: 0.048
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: 0.0
+    }
+  }
+}
+node {
+  name: "OR2V1_96S6T24UL/A2"
+  input: "U4/ZN"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "OR2V1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: -0.007
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: 0.0
+    }
+  }
+}
+node {
+  name: "CLKNAND2V1_96S6T24UL/ZN"
+  input: "U4/I"
+  input: "C14/A2"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "CLKNAND2V1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: 0.0
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: -0.192
+    }
+  }
+}
+node {
+  name: "CLKINV1_96S6T24UL/I"
+  input: "U5/ZN"
+  input: "C14/A2"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "CLKINV1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: -0.0315
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: 0.0
+    }
+  }
+}
+node {
+  name: "OR2V1_96S6T24UL/A2"
+  input: "U5/ZN"
+  input: "U4/I"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "OR2V1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: -0.007
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: 0.0
+    }
+  }
+}
+node {
+  name: "AND2V1_96S6T24UL/Z"
+  input: "C14/A1"
+  input: "C13/A1"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "AND2V1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: 0.0
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: -0.192
+    }
+  }
+}
+node {
+  name: "OR2V1_96S6T24UL/A1"
+  input: "C11/Z"
+  input: "C13/A1"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "OR2V1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: -0.127
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: -0.025
+    }
+  }
+}
+node {
+  name: "OR2V1_96S6T24UL/A1"
+  input: "C11/Z"
+  input: "C14/A1"
+  attr {
+    key: "macro_name"
+    value {
+      placeholder: "OR2V1_96S6T24UL"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro_pin"
+    }
+  }
+  attr {
+    key: "x_offset"
+    value {
+      f: -0.127
+    }
+  }
+  attr {
+    key: "y_offset"
+    value {
+      f: -0.025
+    }
+  }
+}
+node {
+  name: "C13"
+  attr {
+    key: "height"
+    value {
+      f: 0.384
+    }
+  }
+  attr {
+    key: "orientation"
+    value {
+      placeholder: "N"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro"
+    }
+  }
+  attr {
+    key: "width"
+    value {
+      f: 0.384
+    }
+  }
+}
+node {
+  name: "C14"
+  attr {
+    key: "height"
+    value {
+      f: 0.384
+    }
+  }
+  attr {
+    key: "orientation"
+    value {
+      placeholder: "N"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro"
+    }
+  }
+  attr {
+    key: "width"
+    value {
+      f: 0.384
+    }
+  }
+}
+node {
+  name: "C11"
+  attr {
+    key: "height"
+    value {
+      f: 0.384
+    }
+  }
+  attr {
+    key: "orientation"
+    value {
+      placeholder: "N"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro"
+    }
+  }
+  attr {
+    key: "width"
+    value {
+      f: 0.384
+    }
+  }
+}
+node {
+  name: "U4"
+  attr {
+    key: "height"
+    value {
+      f: 0.384
+    }
+  }
+  attr {
+    key: "orientation"
+    value {
+      placeholder: "N"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro"
+    }
+  }
+  attr {
+    key: "width"
+    value {
+      f: 0.192
+    }
+  }
+}
+node {
+  name: "U5"
+  attr {
+    key: "height"
+    value {
+      f: 0.384
+    }
+  }
+  attr {
+    key: "orientation"
+    value {
+      placeholder: "N"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro"
+    }
+  }
+  attr {
+    key: "width"
+    value {
+      f: 0.288
+    }
+  }
+}
+node {
+  name: "U6"
+  attr {
+    key: "height"
+    value {
+      f: 0.384
+    }
+  }
+  attr {
+    key: "orientation"
+    value {
+      placeholder: "N"
+    }
+  }
+  attr {
+    key: "type"
+    value {
+      placeholder: "macro"
+    }
+  }
+  attr {
+    key: "width"
+    value {
+      f: 0.384
+    }
+  }
+}
