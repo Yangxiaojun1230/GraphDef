@@ -4,6 +4,8 @@ import os
 import graph_pb2 as tfGraph
 from tensorflow.python.platform import gfile
 from google.protobuf import text_format
+import textwrap
+import datetime
 class Parse():
     def __init__(self):
         self.micron = 1000
@@ -17,6 +19,14 @@ class Parse():
         self.port_edge = {}
         self.port_direc = {}
         self.node_connect={}
+        self.info=''
+        self.defile =''
+        self.lefile=''
+        self.design='Test'
+        self.width = 0
+        self.height = 0
+        self.hor_track = 0
+        self.ver_track = 0
     def print(self):
         print('micron:',self.micron)
         print('vertial_layers:',self.vertial_layers)
@@ -28,10 +38,24 @@ class Parse():
         print('port_loc:',self.port_loc)
         print('port_direc:',self.port_direc)
         print('node_connect:',self.node_connect)
+    def gen_dirc_tracks(self,layer_list):
+        total_tracks=0
+        for item in layer_list:
+            total_tracks += 1 / float(item)
+            # print('gen_tracks:',item,total_tracks)
+        return round(total_tracks,6)
+    def gen_tracks(self):
+        self.hor_track = self.gen_dirc_tracks(self.horizontal_layers)
+        self.ver_track = self.gen_dirc_tracks(self.vertial_layers)
+        
     def parse_lef(self, file_name):
         assert os.path.exists(file_name), "File not found: {}".format(file_name)
         print("Parsing " + file_name)
-        
+        try:
+            self.micron = float(subprocess.getoutput("grep \"DATABASE MICRONS\" {}".format(file_name)).strip().split()[2])
+        except Exception as e:
+            prin('warning micron in lef:',e)
+        self.lefile = file_name
         with open(file_name) as f:
             lines = f.readlines()
             flag_macro = 0
@@ -103,9 +127,16 @@ class Parse():
                             else:
                                 flag_dir = 1
                         if "PITCH" ==segs[0]:
-                            track_width += float(segs[1])
+                            tmp_pitch =float(segs[1])
+                            if tmp_pitch >1:
+                                tmp_pitch = tmp_pitch / self.micron 
+                            track_width += tmp_pitch
+                            
                         if "WIDTH" ==segs[0]:
-                            track_width += float(segs[1])
+                            tmp_width =float(segs[1])
+                            if tmp_width >1:
+                                tmp_width = tmp_width / self.micron
+                            track_width += tmp_width
                 if "LAYER" == segs[0]:
                     cur_layer = segs[1]
                     flag_layer = 1
@@ -115,7 +146,7 @@ class Parse():
         assert os.path.exists(file_name), "File not found: {}".format(file_name)
         print("Parsing " + file_name)
         self.micron = float(subprocess.getoutput("grep \"UNITS DISTANCE MICRONS\" {}".format(file_name)).strip().split()[3])
-        
+        self.defile = file_name
         with open(file_name) as f:
             lines = f.readlines()
             flag_allnets = 0
@@ -212,8 +243,52 @@ class Parse():
                 if "PINPROPERTIES" == segs[0]:
                     flag_property = 1
                     continue
+                if "DESIGN" == segs[0]:
+                    self.design = segs[1]
+                if "DIEAREA" == segs[0]:
+                    self.width =round( (float(segs[10]) - float(segs[6]))/self.micron,5)
+                    self.height = round((float(segs[7]) - float(segs[3]))/self.micron,5)
+    def gen_info(self):
+        self.info = textwrap.dedent("""\
+        # Placement file for Circuit Training
+        # Source input file(s) : {src_filename}
+        # This file : {filename}
+        # Date : {date}
+        # Columns : {cols}  Rows : {rows}
+        # Width : {width:.3f}  Height : {height:.3f}
+        # Area : {area}
+        # Project : {project}
+        # Block : {block_name}
+        # Routes per micron, hor : {hor_routes:.3f}  ver : {ver_routes:.3f}
+        # Routes used by macros, hor : {hor_macro_alloc:.3f}  ver : {ver_macro_alloc:.3f}
+        # Smoothing factor : {smooth}
+        # Overlap threshold : {overlap_threshold}
+      """.format(
+          src_filename=self.defile,
+          filename=self.lefile,
+          date=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+          cols=int( self.width/10),
+          rows=int( self.height/10),
+          width=self.width,
+          height=self.height,
+          area=round(self.width*self.height,5),
+          project=self.design,
+          block_name=self.design,
+          hor_routes=self.hor_track,
+          ver_routes=self.ver_track,
+          hor_macro_alloc=51.79,
+          ver_macro_alloc=51.79,
+          smooth=2,
+          overlap_threshold=0.004))
+
+        self.info += '\n# Counts of node types:\n'
+        self.info += '\n# node_index x y orientation fixed'
     def gen_node(self):
         with open('initial.plc', 'w+', encoding="utf-8") as file:
+            self.gen_tracks()
+            self.gen_info()
+            
+            file.write(self.info)
         #if len(self.node_connect)>0:
             g=tfGraph.GraphDef()
             item_id = 0
@@ -302,6 +377,7 @@ class Parse():
                 item_id+=1
             txtfile='netlist.pb.txt'
             with gfile.FastGFile(txtfile, 'wb') as f:
+              
               f.write(text_format.MessageToString(g))
 if __name__=='__main__':
     argparser = argparse.ArgumentParser()
