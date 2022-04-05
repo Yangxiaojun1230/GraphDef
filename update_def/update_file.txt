@@ -1,0 +1,55 @@
+import tensorflow as tf
+import graph_pb2 as tfGraph
+from google.protobuf import text_format
+import os.path
+import os
+from tensorflow.python.platform import gfile
+from google.protobuf import text_format
+from protobuf_to_dict import protobuf_to_dict
+def input_pb(filePath,plcfile,defile):#.pb file
+    with gfile.FastGFile(filePath, 'rb') as f:
+        graph_def = tfGraph.GraphDef()
+        text_format.Parse(f.read(),graph_def)
+        dic = protobuf_to_dict(graph_def)   #ParseFromString(), reading message from protocol buffer binary fomat
+        nodes = dic['node']
+        with open(plcfile,'rt') as plc:
+           lines = plc.readlines()
+           locdic={}
+           for line in lines:
+               if not line.startswith('#'):
+                   segs = line.strip().split()
+                   if len(segs)>4:
+                       fix_tag = segs[4]
+                       if float(fix_tag) ==0:
+                           
+                           node_index = int(segs[0])
+                           macro =nodes[node_index]['name']
+                           locdic[macro] = (segs[1],segs[2])
+    update_def(defile,locdic)
+def update_def(file,locdic):
+    flag_components =0
+    with open(file, "r", encoding="utf-8") as f1,open("%s.bak" % file, "w", encoding="utf-8") as f2:
+        for line in f1:
+            segs = line.strip().split()
+            if flag_components:
+                if "END COMPONENTS" in line:
+                    flag_components = 0
+                if '-' == segs[0]:
+                    if segs[1] in locdic:
+                        line = line.replace(segs[6],locdic[segs[1]][0])
+                        line = line.replace(segs[7],locdic[segs[1]][1])
+                    else:
+                        print('not find:',segs[1])
+            if "COMPONENTS" == segs[0]:
+                flag_components = 1
+                
+            f2.write(line)
+    os.remove(file)
+    os.rename("%s.bak" % file, file)
+    
+
+if __name__=='__main__':
+    txtfile ='netlist.pb.txt'
+    plcfile = 'initial.plc'
+    defile = 'smic.def'
+    input_pb(txtfile,plcfile,defile)

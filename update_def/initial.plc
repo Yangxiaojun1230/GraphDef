@@ -1,0 +1,26 @@
+# Placement file for Circuit Training
+# Source input file(s) : smic.def
+# This file : smic.lef
+# Date : 2022-04-02 21:39:40
+# Columns : 0  Rows : 0
+# Width : 2.208  Height : 1.920
+# Area : 4.23936
+# Project : sirv_gnrl_pipe_stage
+# Block : sirv_gnrl_pipe_stage
+# Routes per micron, hor : 29.572  ver : 29.825
+# Routes used by macros, hor : 51.790  ver : 51.790
+# Smoothing factor : 2
+# Overlap threshold : 0.004
+
+# Counts of node types:
+
+# node_index x y orientation fixed0 0.0 1.276 N 1
+2 0.456 0.0 N 1
+5 0.78 0.0 N 1
+8 0.716 0.0 N 1
+19 0 0 N 0
+20 0 0 N 0
+21 0 0 N 0
+22 0 0 N 0
+23 0 0 N 0
+24 0 0 N 0
